@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootcamp Widgets</title>
+    <script src="greet.js"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="greet-widget.js"></script>
+    <script src="enough-airtime.js"></script>
+    <script src="phone-bill.js"></script>
+    <script src="longest-word.js"></script>
+    
+
+    <script>
+       // console.log(greet("jed"))
+    </script>
+</head>
+<style>
+    
+        body{
+        font-family: 'Franklin Gothic Medium';
+         background-color: transparent;
+        background-image:url(https://www.icegif.com/wp-content/uploads/icegif-790.gif);                
+        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;               
+        font-size: larger; 
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        height: 100vh;        
+ 
+   }
+       
+
+    .message {
+        padding: 1em;
+        background-color: lightpink;.
+        margin-bottom: 1em;
+        margin-top: 1em;
+    }
+
+    .input>label {
+        display: inline-block;
+        width: 15em;
+        padding: 0.4em;
+        font-weight: bold;
+
+    }
+
+    .input>input[type="text"] {
+        padding: 0.5em;
+        margin: 0.5em;
+    }
+
+    .widgets {
+        display: flex;
+    }
+
+    .widget {
+        flex: 1;
+        border: 1px solid lightgreen;
+        margin: 1em;
+        padding: 1em;
+        /*content margin*/
+        border-radius: 0.5em;
+    }
+    .btnn{
+    background-color:azure;
+    color: rgb(61, 60, 60);
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    border-radius: 0.25em;
+
+}
+.Head{
+    background-color: lightgreen (101, 159, 235);
+    padding: 1em;
+}
+</style>
+
+<body>
+<div class="Head">
+    <h1>Samuel Tladi bootcamp Alpine js widgets</h1>
+</div>
+    <div class="widgets">
+        <div class="widget" x-data="{
+        Ssentence:'',
+        shortMessage:'',
+        getShortest(){
+            this.shortMessage=shortestWord(this.Ssentence)
+        }
+    }">
+            <h2>Shortest Word in a Sentence</h2>
+            <div class="inaput">
+                <label for="short" style="font-weight:bold" >Write a sentence</label>
+                <input type="text" id="short" x-model="Ssentence" placeholder="e.g i am awesome.">
+                <button x-on:click="getShortest">Find shortest word</button>
+            </div>
+            <div class="message" x-text="shortMessage" x-show="shortMessage.length>0"></div>
+        </div>
+
+        <div class="widget" x-data="{
+            Lsentence:'',
+            longMessage:'',
+            getLongest(){
+             this.longMessage= longestWord(this.Lsentence)
+                }
+            }">
+            <h2>Longest Word in a Sentence</h2>
+            <div class="inputt">
+                <label for="long" style="font-weight:bold" >Write a sentence</label>
+                <input type="text" x-model="Lsentence" id="long" placeholder="e.g. the man is dancing">
+                <button x-on:click="getLongest">Find Longest Word</button>
+            </div>
+            <div x-show="longMessage.length>0" class="message" x-text="longMessage">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="widgets">
+        <div class="widget" x-data="greetWidget">
+            <h2>Greet Widget</h2>
+            
+            <label for="name" style="font-weight:bold ;">Please enter your name</label>
+            <input type="text" x-model="name" id="name" placeholder="e.g. Samuel Tladi">
+            <button x-on:click="greetMe">Greet</button>
+            <div x-show="message.length>0" class="message" x-text="message">
+                You will be greeted here
+            </div>
+        </div>
+
+        <div class="widget" x-data="{
+        airtimeUsage : '',
+        availableAmount: '0.00',
+        airtimeMessage : '',
+        calculate(){
+           this.airtimeMessage= enoughAirtime(this.airtimeUsage, this.availableAmount)
+        }
+       }">
+            <h2>Enough Airtime</h2>
+            
+            <div class="input">
+                <label for="usage">Please enter your airtime usage</label>
+                <input type="text" x-model="airtimeUsage" id="usage" placeholder="eg.call,sms">
+            </div>
+            <div class="input">
+                <label for="amount">Amount Available</label>
+                <input type="text" x-model="availableAmount" id="amount">
+
+            </div>
+           
+            <button x-on:click="calculate">Calculate airtime usage</button>
+            <div class="message" x-text="airtimeMessage" x-show="airtimeMessage.length>0"> Number of Airtime displayed here
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
+
+
+    
+
+
